@@ -136,7 +136,7 @@ function App() {
   return (
     <main>
       
-      <h1>React Calculator </h1>
+      <p>React Calculator </p>
     <div className="calculator-grid">
       <div className= "output curve">
         <div className="previous-operand">{previousOperand} {operation}</div>
@@ -144,19 +144,19 @@ function App() {
       </div>
       <button className="span-two curve" onClick={()=> dispatch({ type: ACTIONS.CLEAR})}>AC</button> 
       <button className="curve" onClick={()=> dispatch({ type: ACTIONS.DELETE_DIGIT})}>DEL</button> 
-      <OperationButton operation="÷" dispatch = {dispatch} className="orange-button"/>
+      <OperationButton operation="÷" dispatch = {dispatch}/>
       <DigitButton digit='1' dispatch = {dispatch} />
       <DigitButton digit='2' dispatch = {dispatch} />
       <DigitButton digit='3' dispatch = {dispatch} />
-      <OperationButton operation="x" dispatch = {dispatch} className="orange-button" />
+      <OperationButton operation="x" dispatch = {dispatch}/>
       <DigitButton digit='4' dispatch = {dispatch} />
       <DigitButton digit='5' dispatch = {dispatch} />
       <DigitButton digit='6' dispatch = {dispatch} />
-      <OperationButton operation="+" dispatch = {dispatch} className="orange-button" />
+      <OperationButton operation="+" dispatch = {dispatch}/>
       <DigitButton digit='7' dispatch = {dispatch} />
       <DigitButton digit='8' dispatch = {dispatch} />
       <DigitButton digit='9' dispatch = {dispatch} />
-      <OperationButton operation="-" dispatch = {dispatch} className="orange-button"/>
+      <OperationButton operation="-" dispatch = {dispatch}/>
       <DigitButton digit='.' dispatch = {dispatch} />
       <DigitButton digit='0' dispatch = {dispatch} />
       <button className='span-two curve orange-button' onClick={()=> dispatch({ type: ACTIONS.EVALUATE})}>=</button>
