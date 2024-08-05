@@ -1,5 +1,5 @@
 /* eslint-disable default-case */
-import { useReducer } from 'react';
+import { useReducer, useEffect } from 'react';
 
 // A reducer function determines how the state of an application 
 // changes in response to an action.
@@ -132,6 +132,42 @@ function evaluate({currentOperand, previousOperand, operation}){
 function App() {
   const [{currentOperand, previousOperand, operation}, dispatch] = useReducer(reducer, {})
 
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key >= "0" && e.key <= "9") {
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: e.key } });
+      }
+      if (e.key === ".") {
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: "." } });
+      }
+      if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/") {
+        const operationMap = {
+          "+": "+",
+          "-": "-",
+          "*": "x",
+          "/": "÷",
+        };
+        dispatch({
+          type: ACTIONS.CHOOSE_OPERATION,
+          payload: { operation: operationMap[e.key] },
+        });
+      }
+      if (e.key === "Enter" || e.key === "=") {
+        dispatch({ type: ACTIONS.EVALUATE });
+      }
+      if (e.key === "Backspace") {
+        dispatch({ type: ACTIONS.DELETE_DIGIT });
+      }
+      if (e.key === "Escape") {
+        dispatch({ type: ACTIONS.CLEAR });
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [dispatch]);
 
   return (
     <main>
